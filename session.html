@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>بدء الجلسة</title>
+</head>
+<body>
+  <h2>مرحبا بك في جلستك</h2>
+  <p>سيبدأ عداد الجلسة بعد الضغط على الزر.</p>
+  <button onclick="startTimer()">ابدأ الجلسة</button>
+  <h3 id="timer">30:00</h3>
+  <script>
+    function startTimer() {
+      let duration = 1800;
+      const display = document.getElementById('timer');
+      setInterval(() => {
+        let minutes = Math.floor(duration / 60);
+        let seconds = duration % 60;
+        display.textContent = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+        if (--duration < 0) duration = 0;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

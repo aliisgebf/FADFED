@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فضفض لي - لوحة إدارة المسؤول</title>
+  <style>
+    body { font-family: 'Arial', sans-serif; background-color: #f9f9f9; margin: 0; padding: 0; }
+    header, footer { background-color: #4a148c; color: white; text-align: center; padding: 1.5rem; }
+    main { max-width: 900px; margin: auto; padding: 2rem; }
+    section { background-color: white; padding: 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+    h2 { color: #4a148c; }
+    label { display: block; margin: 1rem 0 0.5rem; font-weight: bold; }
+    input { width: 100%; padding: 0.75rem; border-radius: 6px; border: 1px solid #ccc; }
+    button { margin-top: 1rem; padding: 0.8rem 1.5rem; background-color: #6a1b9a; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; }
+    .hidden { display: none; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: center; }
+    th { background-color: #ede7f6; }
+    .action-btn { background: #ef6c00; color: white; padding: 0.3rem 0.6rem; border: none; border-radius: 5px; margin: 0 5px; cursor: pointer; font-size: 0.9rem; }
+    .danger { background: #d32f2f; }
+    .success { background: #388e3c; }
+    .report { background-color: #fff3e0; padding: 1rem; border-radius: 6px; margin-top: 2rem; }
+    .report textarea { width: 100%; height: 100px; margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>لوحة إدارة المسؤول</h1>
+    <p>مخصصة لمراقبة وتفعيل الجلسات والتحكم بالموقع</p>
+  </header>
+
+  <main>
+    <section id="loginSection">
+      <h2>تسجيل دخول المشرف</h2>
+      <label>اسم المستخدم:</label>
+      <input type="text" id="adminUsername" placeholder="ادخل اسم المستخدم">
+
+      <label>كلمة المرور:</label>
+      <input type="password" id="adminPassword" placeholder="********">
+
+      <button onclick="adminLogin()">تسجيل الدخول</button>
+      <p id="loginMessage" style="color: red;"></p>
+    </section>
+
+    <section id="adminDashboard" class="hidden">
+      <h2>لوحة التحكم</h2>
+      <p>مرحباً <strong>monther</strong> 👋</p>
+
+      <div>
+        <h3>إحصائيات النظام:</h3>
+        <ul>
+          <li>الجلسات المحجوزة: 47</li>
+          <li>المستخدمين الجدد هذا الشهر: 22</li>
+          <li>إجمالي المدفوعات: $1,250</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>إدارة الجلسات:</h3>
+        <table>
+          <thead>
+            <tr><th>المستخدم</th><th>تاريخ</th><th>وقت</th><th>مستشار</th><th>الحالة</th><th>إجراءات</th></tr>
+          </thead>
+          <tbody id="sessionTable">
+            <tr>
+              <td>ahmad@gmail.com</td>
+              <td>2025-07-19</td>
+              <td>10:00</td>
+              <td>سارة</td>
+              <td id="status1">قيد الانتظار</td>
+              <td>
+                <button class="action-btn success" onclick="confirmSession('status1')">تأكيد</button>
+                <button class="action-btn danger" onclick="deleteRow(this)">حذف</button>
+              </td>
+            </tr>
+            <tr>
+              <td>layla@gmail.com</td>
+              <td>2025-07-20</td>
+              <td>18:00</td>
+              <td>أحمد</td>
+              <td id="status2">مؤكدة</td>
+              <td>
+                <button class="action-btn success" onclick="confirmSession('status2')">تأكيد</button>
+                <button class="action-btn danger" onclick="deleteRow(this)">حذف</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="report">
+        <h3>إنشاء تقرير / ملاحظات الجلسة</h3>
+        <label>ملخص الجلسة:</label>
+        <textarea placeholder="اكتب هنا تفاصيل الجلسة أو الملاحظات"></textarea>
+        <button>📤 إرسال إلى البريد</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 منصة فضفض لي - لوحة الإدارة</p>
+  </footer>
+
+  <script>
+    function adminLogin() {
+      const username = document.getElementById('adminUsername').value;
+      const password = document.getElementById('adminPassword').value;
+      const loginSection = document.getElementById('loginSection');
+      const dashboard = document.getElementById('adminDashboard');
+      const message = document.getElementById('loginMessage');
+
+      if (username === 'monther' && password === '@p2qSS4pY6GF8-^') {
+        loginSection.classList.add('hidden');
+        dashboard.classList.remove('hidden');
+      } else {
+        message.textContent = '❌ بيانات الدخول غير صحيحة';
+      }
+    }
+
+    function confirmSession(statusId) {
+      const statusElement = document.getElementById(statusId);
+      statusElement.textContent = '✔️ مؤكدة';
+    }
+
+    function deleteRow(btn) {
+      const row = btn.closest('tr');
+      row.remove();
+    }
+  </script>
+</body>
+</html>
