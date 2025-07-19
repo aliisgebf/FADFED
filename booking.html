@@ -1,21 +1,53 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>حجز جلسة</title>
+    <meta charset="UTF-8">
+    <title>حجز جلسة - فضفضة</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <h2>نموذج الحجز</h2>
-  <form>
-    <label>التاريخ:</label><input type="date"><br>
-    <label>الوقت:</label><input type="time"><br>
-    <label>اختر مستشار:</label>
-    <select>
-      <option>أحمد</option>
-      <option>سارة</option>
-    </select><br>
-    <button type="submit">احجز الآن</button>
-  </form>
+    <h2>حجز جلسة فضفضة</h2>
+    <form id="booking-form" action="backend/booking.php" method="POST">
+        <label for="name">1. اسمك أو اسم وهمي:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label>2. كيف تفضل أسلوب النقاش؟</label><br>
+        <select name="session_type" required>
+            <option value="text">دردشة نصية</option>
+            <option value="audio">دردشة صوتية</option>
+            <option value="video">دردشة فيديو</option>
+        </select><br><br>
+
+        <label>3. الجنس:</label><br>
+        <input type="radio" name="gender" value="ذكر" required> ذكر
+        <input type="radio" name="gender" value="أنثى" required> أنثى<br><br>
+
+        <label>4. هل ترغب في حفظ الجلسة؟</label><br>
+        <input type="radio" name="save_session" value="yes" required> نعم
+        <input type="radio" name="save_session" value="no" required> لا<br><br>
+
+        <h3>الأسعار:</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>نوع الجلسة</th><th>نصف ساعة</th><th>ساعة</th><th>ساعتين</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>دردشة نصية</td><td>$15</td><td>$30</td><td>$50</td></tr>
+                <tr><td>دردشة صوتية</td><td>$30</td><td>$55</td><td>$100</td></tr>
+                <tr><td>دردشة فيديو</td><td>$50</td><td>$100</td><td>$190</td></tr>
+            </tbody>
+        </table><br>
+
+        <label for="duration">اختر مدة الجلسة:</label><br>
+        <select name="duration" required>
+            <option value="30">نصف ساعة</option>
+            <option value="60">ساعة</option>
+            <option value="120">ساعتين</option>
+        </select><br><br>
+
+        <button type="submit">احجز الآن</button>
+    </form>
 </body>
 </html>
