@@ -11,3 +11,15 @@ CREATE TABLE users (
     gender ENUM('ذكر', 'أنثى'),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- جدول الحجوزات
+CREATE TABLE bookings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    session_type ENUM('text','audio','video'),
+    gender ENUM('ذكر', 'أنثى'),
+    save_session ENUM('yes','no'),
+    duration INT,
+    price DECIMAL(10,2),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
